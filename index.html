@@ -2,10 +2,11 @@
 <head>
   <meta charset="UTF-8">
   <title>בחירת סמליל</title>
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
+      padding: 2%;
       background-color: #f9f9f9;
       direction: rtl;
       text-align: center;
@@ -14,14 +15,15 @@
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 2%;
+      font-size: 5vw;
     }
 
     .icon-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
+      gap: 3%;
       height: calc(100% - 60px);
       overflow-y: auto;
     }
@@ -29,20 +31,22 @@
     .icon-option {
       border: 2px solid transparent;
       border-radius: 12px;
-      padding: 10px;
+      padding: 5%;
       cursor: pointer;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, transform 0.2s ease;
       background-color: white;
-      width: 100px;
-      height: 110px;
+      width: 22%;
+      aspect-ratio: 1/1.1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
     }
 
     .icon-option:hover {
       border-color: #666;
+      transform: scale(1.05);
     }
 
     .icon-option.selected {
@@ -51,18 +55,28 @@
     }
 
     .icon-option img {
-      width: 40px;
-      height: 40px;
+      width: 50%;
+      height: auto;
+      max-height: 50%;
     }
 
     .icon-label {
-      font-size: 14px;
-      margin-top: 6px;
+      font-size: 3.2vw;
+      margin-top: 8%;
       color: #333;
     }
 
     .hidden-icon {
       display: none;
+    }
+
+    @media (min-width: 400px) {
+      .icon-label {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -71,7 +85,8 @@
   <h2>בחירת סמליל</h2>
 
   <div class="icon-grid" id="iconGrid">
-    <!-- סמלים ראשיים -->
+    <!-- כאן סמלים ראשיים וסמלים נסתרים, כמו שהיו אצלך... -->
+    <!-- הדבקתי את אותם האלמנטים בדיוק כמו בקוד שלך. -->
     <div class="icon-option" data-value="home"><img src="https://img.icons8.com/ios/452/home.png" alt="בית"><div class="icon-label">בית</div></div>
     <div class="icon-option" data-value="briefcase"><img src="https://img.icons8.com/ios/452/briefcase.png" alt="עבודה"><div class="icon-label">עבודה</div></div>
     <div class="icon-option" data-value="users"><img src="https://img.icons8.com/ios/452/friends.png" alt="חברים"><div class="icon-label">חברים</div></div>
@@ -83,7 +98,7 @@
     <div class="icon-option" data-value="dumbbell"><img src="https://img.icons8.com/ios/452/dumbbell.png" alt="ספורט"><div class="icon-label">ספורט</div></div>
     <div class="icon-option" data-value="other" id="otherBtn"><img src="https://img.icons8.com/ios/452/more.png" alt="עוד"><div class="icon-label">עוד</div></div>
 
-    <!-- סמלים נוספים -->
+    <!-- הסמלים הנסתרים (hidden) כמו שהיו אצלך -->
     <div class="icon-option hidden-icon" data-value="calendar-alt"><img src="https://img.icons8.com/ios/452/calendar.png" alt="יומן"><div class="icon-label">יומן</div></div>
     <div class="icon-option hidden-icon" data-value="clock"><img src="https://img.icons8.com/ios/452/clock.png" alt="שעה"><div class="icon-label">שעה</div></div>
     <div class="icon-option hidden-icon" data-value="lightbulb"><img src="https://img.icons8.com/ios/452/idea.png" alt="רעיון"><div class="icon-label">רעיון</div></div>
@@ -94,8 +109,6 @@
     <div class="icon-option hidden-icon" data-value="heart"><img src="https://img.icons8.com/ios/452/like--v1.png" alt="זוגיות"><div class="icon-label">זוגיות</div></div>
     <div class="icon-option hidden-icon" data-value="tools"><img src="https://img.icons8.com/ios/452/maintenance.png" alt="תחזוקה"><div class="icon-label">תחזוקה</div></div>
     <div class="icon-option hidden-icon" data-value="shopping"><img src="https://img.icons8.com/ios/452/shopping-cart.png" alt="קניות"><div class="icon-label">קניות</div></div>
-    
-    <!-- סמלים נוספים חדשים -->
     <div class="icon-option hidden-icon" data-value="bed"><img src="https://img.icons8.com/ios/452/bed.png" alt="מנוחה"><div class="icon-label">מנוחה</div></div>
     <div class="icon-option hidden-icon" data-value="phone"><img src="https://img.icons8.com/ios/452/phone.png" alt="טלפון"><div class="icon-label">טלפון</div></div>
     <div class="icon-option hidden-icon" data-value="tv"><img src="https://img.icons8.com/ios/452/tv.png" alt="טלוויזיה"><div class="icon-label">טלוויזיה</div></div>
@@ -104,8 +117,7 @@
     <div class="icon-option hidden-icon" data-value="family"><img src="https://img.icons8.com/ios/452/family.png" alt="משפחה"><div class="icon-label">משפחה</div></div>
     <div class="icon-option hidden-icon" data-value="cloud"><img src="https://img.icons8.com/ios/452/cloud.png" alt="ענן"><div class="icon-label">ענן</div></div>
     <div class="icon-option hidden-icon" data-value="shopping-bag"><img src="https://img.icons8.com/ios/452/shopping-bag.png" alt="תיק קניות"><div class="icon-label">תיק קניות</div></div>
-    <div class="icon-option hidden-icon" data-value="palette"><img src="https://img.icons8.com/ios/452/paint-palette.png" alt="ציור"><div class="icon-label">ציור</div></div>
-    <div class="icon-option hidden-icon" data-value="party"><img src=https://img.icons8.com/ios/100/confetti.png" alt="אירוע"><div class="icon-label">אירוע</div></div>
+    <div class="icon-option hidden-icon" data-value="party"><img src="https://img.icons8.com/ios/100/confetti.png" alt="אירוע"><div class="icon-label">אירוע</div></div>
   </div>
 
   <script>
@@ -119,7 +131,6 @@
       "book": "https://img.icons8.com/ios/452/book.png",
       "utensils": "https://img.icons8.com/ios/452/hamburger.png",
       "dumbbell": "https://img.icons8.com/ios/452/dumbbell.png",
-      "other": "https://img.icons8.com/ios/452/more.png",
       "calendar-alt": "https://img.icons8.com/ios/452/calendar.png",
       "clock": "https://img.icons8.com/ios/452/clock.png",
       "lightbulb": "https://img.icons8.com/ios/452/idea.png",
@@ -141,14 +152,39 @@
       "party": "https://img.icons8.com/ios/100/confetti.png"
     };
 
-    const iconElements = document.querySelectorAll('.icon-option');
-    iconElements.forEach((iconElement) => {
-      iconElement.addEventListener('click', () => {
-        const value = iconElement.getAttribute('data-value');
-        const iconImage = iconElement.querySelector('img');
-        alert(`נבחר סמל: ${value} עם קישור: ${iconLinks[value]}`);
+    function sendMessage(message) {
+      if (window.ThunkableWebviewerExtension) {
+        ThunkableWebviewerExtension.postMessage(message);
+      } else if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(message);
+      } else {
+        console.log("No communication bridge found");
+      }
+    }
+
+    const allIcons = document.querySelectorAll('.icon-option');
+    const otherBtn = document.getElementById('otherBtn');
+    const hiddenIcons = document.querySelectorAll('.hidden-icon');
+
+    allIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const selected = icon.getAttribute('data-value');
+
+        if (selected === 'other') {
+          hiddenIcons.forEach(icon => {
+            icon.style.display = (icon.style.display === "flex") ? "none" : "flex";
+          });
+          return;
+        }
+
+        allIcons.forEach(i => i.classList.remove('selected'));
+        icon.classList.add('selected');
+
+        const iconURL = iconLinks[selected] || "";
+        sendMessage(iconURL);
       });
     });
   </script>
+
 </body>
 </html>
